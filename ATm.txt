@@ -1,0 +1,76 @@
+
+import java.util.Scanner;
+
+class  ATM{
+    float balance=60000;
+    int pin = 567;
+
+    public void Checkpin(){
+        System.out.println("Enter the Pin:");
+        Scanner sc = new Scanner(System.in);
+        int enteredpin = sc.nextInt();
+        if(enteredpin==pin){
+            menu();
+        }
+        else {
+            System.out.println("Please enter the correct pin:");
+        }
+
+    }
+    public void menu(){
+        System.out.println("Enter Your Choice");
+        System.out.println("1.Check A/C balance");
+        System.out.println("2.Withdraw Money");
+        System.out.println("3.Deposit MOney");
+        System.out.println("4.Exit");
+        Scanner sc = new Scanner(System.in);
+        int option = sc.nextInt();
+        if(option==1){
+            checkbalance();
+        } else if (option==2) {
+            withdrawmoney();
+
+        } else if (option==3) {
+            depositmoney();
+        } else if (option==4) {
+            return;
+
+        }
+        else {
+            System.out.println("Enter a valid choice");
+        }
+    }
+    public void checkbalance(){
+        System.out.println("Balance:" +balance);
+        menu();
+    }
+    public void withdrawmoney(){
+        System.out.println("Enter the amount");
+        Scanner sc = new Scanner(System.in);
+        float amount = sc.nextFloat();
+        if(amount > balance){
+            System.out.println("Please enter a valid amount");
+        }
+        else {
+            balance = balance-amount;
+            System.out.println("Money Withdrawn Successfully");
+        }
+        menu();
+    }
+    public void depositmoney(){
+        System.out.println("Enter the amount");
+        Scanner sc = new Scanner(System.in);
+        float amount = sc.nextFloat();
+        balance = balance + amount;
+        System.out.println("Money deposited successfully");
+        menu();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ATM obj = new ATM();
+        obj.Checkpin();
+
+    }
+}
